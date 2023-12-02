@@ -1,12 +1,12 @@
 import { Route,Routes } from "react-router-dom";
-import LoginPage from "../Pages/User/LoginPage";
+import SignupPage from "../Pages/User/SignupPage";
 
 import React from 'react'
 
 function UserRouters() {
   return (
     <Routes>
-        <Route path="/login" element={<LoginPage/>}/>  
+        <Route path="/Signup" element={<SignupPage/>}/>  
     </Routes>
   )
 }

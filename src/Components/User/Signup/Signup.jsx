@@ -3,15 +3,24 @@ import { Formik, useFormik } from "formik";
 import { Link } from "react-router-dom";
 
 import * as Yup from "yup";
+import { userSignup } from "../../../Services/userApi";
+
 function Login() {
   const initialValues = {
     firstname: "",
     phoneNumber: "",
     email: "",
     password: "",
+    conformPassword: "",
   };
 
-  const onSubmit = async (values) => {};
+  const onSubmit = async (values) => {
+    try {
+      const { date } = await userSignup(values);
+    } catch (errors) {
+      console.log(errors);
+    }
+  };
 
   const validationSchema = Yup.object({
     firstname: Yup.string()
@@ -42,6 +51,9 @@ function Login() {
         /^(?=.*[A-Z])(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]).*$/,
         "* Password must contain at least one capital letter\nand one special character"
       ),
+    conformPassword: Yup.string()
+      .oneOf([Yup.ref("password"), null], "Passwords must match")
+      .required("* This field is required"),
   });
 
   const formik = useFormik({
@@ -61,7 +73,9 @@ function Login() {
               <div className="col-lg-6 mb-5 mb-lg-0">
                 <h1 className="my-5 display-3 fw-bold ls-tight">
                   The Best management App <br />
-                  <span className="text-primary">for your Farm</span>
+                  <span className="text-primary">
+                    for your<span className="text-success"> Farm </span>
+                  </span>
                 </h1>
                 <p style={{ color: "hsl(217, 10%, 50.8%)" }}>
                   Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -186,7 +200,7 @@ function Login() {
                         <input
                           type="password"
                           name="conformPassword"
-                          id="form3Example4"
+                          id="form3Example5"
                           value={formik.values.conformPassword}
                           onChange={formik.handleChange}
                           onBlur={formik.handleBlur}
@@ -214,7 +228,7 @@ function Login() {
                         Sign up
                       </button>
                       <div class="signup_link">
-                        Already have an account?<Link to="/login">Login</Link>
+                        Already have an account? <Link to="/login">Login</Link>
                       </div>
                     </form>
                   </div>

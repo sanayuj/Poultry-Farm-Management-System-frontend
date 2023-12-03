@@ -1,5 +1,5 @@
 import React from "react";
-import Signup from "../../Components/User/Signup/Signup";
+import Signup from "../../Components/User/Login/Signup";
 import Header from "../../Components/User/Header/Header";
 
 function LoginPage() {

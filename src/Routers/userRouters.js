@@ -6,7 +6,7 @@ import React from 'react'
 function UserRouters() {
   return (
     <Routes>
-        <Route path="/Signup" element={<SignupPage/>}/>  
+        <Route path="/signup" element={<SignupPage/>}/>  
     </Routes>
   )
 }

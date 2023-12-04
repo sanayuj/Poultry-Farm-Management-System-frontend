@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Formik, useFormik } from "formik";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { userSignup } from "../../../Services/userApi";
 import { toast } from "react-toastify";

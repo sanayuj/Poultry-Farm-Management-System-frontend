@@ -23,7 +23,7 @@ function Header() {
             <ul class="navbar-nav">
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="#">
-                  Home
+                  Explore
                 </a>
               </li>
             </ul>

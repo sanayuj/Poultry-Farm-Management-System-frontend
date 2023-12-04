@@ -1,13 +1,36 @@
 import React from "react";
 import * as Yup from "yup";
+import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
-import { Link } from "react-router-dom";
 import { useFormik } from "formik";
-import {userLogin} from "../../../Services/userApi"
+import { userLogin } from "../../../Services/userApi";
+import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { setUserDetails } from "../../../Features/setUser";
+
 function Login() {
   const initialValues = {
     email: "",
     password: "",
+  };
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const onSubmit = async (values) => {
+    try {
+      console.log("On Submit!!");
+      const { data } = await userLogin(values);
+      console.log(data, "USER RETURN DATA!!!");
+      if (data.created) {
+        localStorage.setItem("jwt", data.token);
+        dispatch(setUserDetails(data.user));
+        toast.success(data.message, { position: "top-right" });
+        navigate("/home");
+      } else {
+        toast.error(data.message, { position: "top-right" });
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
   const validationSchema = Yup.object({
     email: Yup.string()
@@ -20,9 +43,6 @@ function Login() {
     password: Yup.string().required("* This field is required"),
   });
 
-  const onSubmit = (values) => {
-    const {data}=userLogin(values)
-  };
   const formik = useFormik({
     initialValues,
     onSubmit,
@@ -30,18 +50,18 @@ function Login() {
   });
   return (
     <body>
-      <div class="signin">
-        <div class="back-img">
-          <div class="sign-in-text">
-            <h2 class="active">Log In</h2>
-            <h2 class="nonactive">Sign Up</h2>
+      <div className="signin">
+        <div className="back-img">
+          <div className="sign-in-text">
+            <h2 className="active">Log In</h2>
+            <h2 className="nonactive">Sign Up</h2>
           </div>
-          <div class="layer"></div>
-          <p class="point">&#9650;</p>
+          <div className="layer"></div>
+          <p className="point">&#9650;</p>
         </div>
-        <div class="form-section">
-          <form action="#">
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <div className="form-section">
+          <form onSubmit={formik.handleSubmit}>
+            <div className="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
               <input
                 type="text"
                 placeholder="Email"
@@ -77,18 +97,19 @@ function Login() {
                   {formik.errors.password}
                 </p>
               ) : null}
-              {/* <span class="mdl-textfield__error">Enter a correct Email</span> */}
             </div>
             <br />
-            <p class="forgot-text">
+            <p className="forgot-text">
               Don't have an account ? <Link to={"/signup"}>Sign Up</Link>
-            </p>
+            </p>{" "}
+            <button
+              type="submit"
+              className="sign-in-btn mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--raised mdl-button--colored"
+            >
+              <span className="LogIn">LogIn</span>
+            </button>
           </form>
         </div>
-
-        <button class="sign-in-btn mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--raised mdl-button--colored">
-          <span className="LogIn">LogIn</span>
-        </button>
       </div>
     </body>
   );

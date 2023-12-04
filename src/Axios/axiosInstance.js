@@ -8,7 +8,10 @@ const userInstance = axios.create({
 });
 
 const adminInstance = axios.create({
-  baseURL: `${process.env.REACT_APP_BASE_URL}/admin`,
+  baseURL: `${"http://localhost:4000"}/admin`,
+  headers: {
+    "Content-Type": "application/json",
+  },
 });
 
 export { userInstance, adminInstance };

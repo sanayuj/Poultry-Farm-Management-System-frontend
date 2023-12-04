@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { Formik, useFormik } from "formik";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+
 
 import * as Yup from "yup";
 import { userSignup } from "../../../Services/userApi";
+import { toast } from "react-toastify";
 
-function Login() {
+function Signup() {
+  const navigate=useNavigate()
   const initialValues = {
     firstname: "",
     phoneNumber: "",
@@ -16,7 +19,15 @@ function Login() {
 
   const onSubmit = async (values) => {
     try {
-      const { date } = await userSignup(values);
+      const { data } = await userSignup(values);
+      if(data.status){
+        navigate("/login")
+        toast.success(data.message)
+      }else{
+        toast.error(data.message,{
+          position: "top-right",
+        })
+      }
     } catch (errors) {
       console.log(errors);
     }
@@ -97,7 +108,7 @@ function Login() {
                               name="firstname"
                               id="form3Example1"
                               className="form-control"
-                              placeholder="First Name"
+                              placeholder="Username"
                               onBlur={formik.handleBlur}
                               value={formik.values.firstname}
                               onChange={formik.handleChange}
@@ -242,4 +253,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Signup;

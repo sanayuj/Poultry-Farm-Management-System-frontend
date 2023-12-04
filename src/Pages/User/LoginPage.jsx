@@ -1,14 +1,14 @@
 import React from "react";
-import Signup from "../../Components/User/Signup/Signup";
+import Login from "../../Components/User/Login/Login";
 import Header from "../../Components/User/Header/Header";
 
-function SignupPage() {
+function LoginPage() {
   return (
     <div>
       <Header />
-      <Signup />
+      <Login />
     </div>
   );
 }
 
-export default SignupPage;
+export default LoginPage;

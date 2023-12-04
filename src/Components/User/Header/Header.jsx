@@ -6,7 +6,7 @@ function Header() {
       <nav class="navbar navbar-expand-lg bg-body-tertiary my-2 ">
         <div class="container-fluid mx-5">
           <a class="navbar-brand" href="#">
-           <b>Farm App</b>
+           <b>NourishNet</b>
           </a>
           <button
             class="navbar-toggler"

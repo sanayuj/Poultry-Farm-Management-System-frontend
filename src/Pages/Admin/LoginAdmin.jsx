@@ -1,9 +1,12 @@
 import React from 'react'
 import Login from '../../Components/Admin/AdminLogin/AdminLogin'
+import Header from '../../Components/Admin/Header/Header'
 
 function LoginAdmin() {
   return (
-    <div><Login/></div>
+    <div>
+        <Header/>
+    <Login/></div>
   )
 }
 

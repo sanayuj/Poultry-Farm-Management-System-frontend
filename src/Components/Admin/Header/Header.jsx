@@ -3,7 +3,7 @@ import React from "react";
 function Header() {
   return (
     <div>
-      <nav class="navbar navbar-expand-lg bg-body-tertiary my-2 ">
+      <nav class="navbar navbar-expand-lg bg-body-tertiary my-0 ">
         <div class="container-fluid mx-5">
           <a class="navbar-brand" href="#">
             <b>

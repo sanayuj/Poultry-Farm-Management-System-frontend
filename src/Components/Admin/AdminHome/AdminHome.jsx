@@ -2,7 +2,7 @@ import React from 'react'
 import "./AdminHome.css"
 function AdminHome() {
   return (
-    <div className='mainDiv'>AdminHome</div>
+    <div className='mainDiv'>Charts</div>
   )
 }
 

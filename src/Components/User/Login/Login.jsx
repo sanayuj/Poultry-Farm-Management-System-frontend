@@ -24,7 +24,7 @@ function Login() {
         localStorage.setItem("jwt", data.token);
         dispatch(setUserDetails(data.user));
         toast.success(data.message, { position: "top-right" });
-        navigate("/home");
+        navigate("/");
       } else {
         toast.error(data.message, { position: "top-right" });
       }

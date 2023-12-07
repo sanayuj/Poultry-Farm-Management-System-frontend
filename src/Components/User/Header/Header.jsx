@@ -36,7 +36,7 @@ function Header() {
   return (
     <div>
       <nav class="navbar navbar-expand-lg bg-body-tertiary my-2 ">
-        <div class="container-fluid mx-5">
+        <div class="container-fluid mx-5 ">
           <Link class="navbar-brand" to={"/"}>
             {" "}
             <b>NourishNet</b>
@@ -54,11 +54,7 @@ function Header() {
           </button>
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">
-                  Explore
-                </a>
-              </li>
+             
             </ul>
           </div>
         </div>
@@ -76,7 +72,7 @@ function Header() {
             </div> */}
             <div className="userlogOutBtnDiv">
               {" "}
-              <button className="userloginBtn" onClick={userLogOut}>
+              <button className="userloginBtn mx-5" onClick={userLogOut}>
                 LogOut
               </button>
             </div>

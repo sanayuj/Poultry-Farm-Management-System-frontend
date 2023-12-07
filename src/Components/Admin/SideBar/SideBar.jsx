@@ -6,6 +6,7 @@ import { BiCategory } from "react-icons/bi";
 import SideNav, { NavItem, NavIcon, NavText } from "@trendmicro/react-sidenav";
 import "@trendmicro/react-sidenav/dist/react-sidenav.css";
 import "./SideBar.css";
+import { Link } from "react-router-dom";
 
 function SideBar() {
   return (
@@ -20,7 +21,7 @@ function SideBar() {
             <NavText>Home</NavText>
             <NavItem eventKey="/admin/">
               <NavIcon></NavIcon>
-              <NavText>Sale chart</NavText>
+              <NavText><Link className="no-underline" to={"/admin/"}>Sale chart</Link></NavText>
             </NavItem>
             <NavItem eventKey="/admin/">
               <NavIcon></NavIcon>
@@ -34,7 +35,12 @@ function SideBar() {
             <NavText>Users</NavText>
             <NavItem eventKey="/admin/userDetails">
               <NavIcon></NavIcon>
-              <NavText> List</NavText>
+              <NavText><Link className="no-underline" to={"/admin/userDetails"}>List</Link> </NavText>
+            </NavItem>
+            <NavText>Users</NavText>
+            <NavItem eventKey="/admin/">
+              <NavIcon></NavIcon>
+              <NavText><Link className="no-underline" to={"/admin/"}>Farm Details</Link> </NavText>
             </NavItem>
           </NavItem>
           <NavItem eventKey="/">
@@ -55,7 +61,7 @@ function SideBar() {
             <NavIcon>
               <BiCategory size={20} className="sidebarIcon" />
             </NavIcon>
-            <NavText>Category</NavText>
+           <Link></Link> <NavText>Help and Support</NavText>
           </NavItem>
         </SideNav.Nav>
       </SideNav>

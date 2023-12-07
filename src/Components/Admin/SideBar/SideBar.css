@@ -9,3 +9,8 @@
 .sidenav .toggle{
     color:rgb(229, 223, 223) ;
 }
+
+.no-underline {
+    text-decoration: none;
+    color: black;
+  }

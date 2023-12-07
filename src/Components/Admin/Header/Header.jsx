@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Header() {
 
@@ -7,11 +8,11 @@ function Header() {
     <div>
       <nav class="navbar navbar-expand-lg bg-body-tertiary my-0 ">
         <div class="container-fluid mx-5">
-          <a class="navbar-brand" href="#">
+          <Link class="navbar-brand" to="/admin/">
             <b>
               NourishNet<span className="text-primary t-3">Admin</span>
             </b>
-          </a>
+          </Link>
         </div>
        
       </nav>

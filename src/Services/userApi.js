@@ -13,7 +13,9 @@ export const userLogin = (values) => {
   return userInstance.post("/login", { ...values });
 };
 
-
+export const addFarmDetails=(values,userId)=>{
+  return userInstance.post("/addfarm",{...values,userId:userId})
+}
 //GET methods
 
 export const userHeader=()=>{

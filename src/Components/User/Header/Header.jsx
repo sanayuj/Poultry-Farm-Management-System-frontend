@@ -78,13 +78,13 @@ function Header() {
             </div>
           </div>
         ) : (
-          <div className="loginSignupBtn">
+          <div className="loginSignupBtn px-3">
             <button className="loginButton" onClick={handleLoginClick}>
               Login
             </button>
-            <button className="signupButton" onClick={handleSignupClick}>
+            {/* <button className="signupButton" onClick={handleSignupClick}>
               Signup
-            </button>
+            </button> */}
           </div>
         )}
       </nav>

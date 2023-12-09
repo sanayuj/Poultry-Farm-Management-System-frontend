@@ -1,17 +1,18 @@
 import React from "react";
-import Home from "../../Components/User/Home/Home";
+import AddFarm from "../../Components/User/AddFarm/AddFarm";
 import Header from "../../Components/User/Header/Header";
 import SubNavbar from "../../Components/User/SubNavbar/SubNavbar";
 import Footer from "../../Components/User/Footer/Footer";
-function HomePage() {
+
+function AddFarmPage() {
   return (
     <div>
       <Header />
       <SubNavbar />
-      <Home />
+      <AddFarm />
       <Footer />
     </div>
   );
 }
 
-export default HomePage;
+export default AddFarmPage;

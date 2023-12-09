@@ -54,7 +54,7 @@ function Login() {
         <div className="back-img">
           <div className="sign-in-text">
             <h2 className="active">Log In</h2>
-            <h2 className="nonactive">Sign Up</h2>
+            {/* <h2 className="nonactive">Sign Up</h2> */}
           </div>
           <div className="layer"></div>
           <p className="point">&#9650;</p>
@@ -99,9 +99,9 @@ function Login() {
               ) : null}
             </div>
             <br />
-            <p className="forgot-text">
+            {/* <p className="forgot-text">
               Don't have an account ? <Link to={"/signup"}>Sign Up</Link>
-            </p>{" "}
+            </p>{" "} */}
             <button
               type="submit"
               className="sign-in-btn mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--raised mdl-button--colored"

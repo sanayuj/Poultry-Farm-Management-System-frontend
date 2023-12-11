@@ -1,15 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { useSelector} from "react-redux";
+import { useSelector } from "react-redux";
 import "./AddFarm.css";
-import { addFarmDetails } from "../../../Services/userApi";
+import { addFarmDetails, showUserFarms } from "../../../Services/userApi";
 import { toast } from "react-toastify";
 function AddFarm() {
   const user = useSelector((state) => state.user.value);
+
+  useEffect(() => {
+    
+      try {
+        const { data } =  showUserFarms(user._id);
+      } catch (error) {
+        console.log(error);
+      }
+    
+  });
+
+  console.log(user);
   const initialValues = {
     farmname: "",
-    licenceId:"",
+    licenceId: "",
     phonenumber: "",
     address: "",
     state: "",
@@ -20,11 +32,13 @@ function AddFarm() {
 
   const onSubmit = async (values) => {
     try {
-      const { data } = await addFarmDetails(values,user._id);
-      if(data.status){
-        toast.success(data.message)
-      }else{
-        toast(data.message)
+      console.log("OnClick submited!")
+      const { data } = await addFarmDetails(values, user._id);
+      console.log(data,"OnClick submited!")
+      if (data.status) {
+        toast.success(data.message);
+      } else {
+        toast(data.message);
       }
     } catch (error) {
       console.log(error);
@@ -43,7 +57,7 @@ function AddFarm() {
       .min(3, "*Name must be at least 3 characters long")
       .matches(/^[A-Za-z]+$/, "* Name must only contain characters")
       .required("* This field is required"),
-      licenceId: Yup.string()
+    licenceId: Yup.string()
       .matches(/^[0-9]+$/, "* Licence ID must only contain numbers")
       .max(4, "* Licence ID must be at most 4 digits long")
       .required("* This field is required"),
@@ -67,45 +81,45 @@ function AddFarm() {
 
   return (
     <div>
-      <div class="formbold-main-wrapper">
-        <div class="formbold-form-wrapper">
+      <div className="formbold-main-wrapper">
+        <div className="formbold-form-wrapper">
           <form onSubmit={formik.handleSubmit}>
-            <div class="formbold-form-title">
-              <h2 class="">Add Farm Details</h2>
+            <div className="formbold-form-title">
+              <h2 className="">Add Farm Details</h2>
               <p>Fill the details about your farm</p>
             </div>
 
-            <div class="formbold-input-flex">
+            <div className="formbold-input-flex">
               <div>
-                <label for="firstname" class="formbold-form-label">
+                <label for="firstname" className="formbold-form-label">
                   Farm Name
                 </label>
                 <input
                   type="text"
                   name="farmname"
                   id="farmname"
-                  class="formbold-form-input"
+                  className="formbold-form-input"
                   onBlur={formik.handleBlur}
                   value={formik.values.farmname}
                   onChange={formik.handleChange}
                 />
                 {formik.touched.farmname && formik.errors.farmname ? (
-                <p
-                  className="text-danger"
-                  style={{
-                    fontSize: "12px",
-                    margin: "0px",
-                    padding: "0px",
-                  }}
-                >
-                  {formik.errors.farmname}
-                </p>
-              ) : null}
+                  <p
+                    className="text-danger"
+                    style={{
+                      fontSize: "12px",
+                      margin: "0px",
+                      padding: "0px",
+                    }}
+                  >
+                    {formik.errors.farmname}
+                  </p>
+                ) : null}
               </div>
-              
-              <div class="fformbold-mb-3">
+
+              <div className="fformbold-mb-3">
                 <div>
-                  <label for="phone" class="formbold-form-label">
+                  <label for="phone" className="formbold-form-label">
                     Farm Licence ID
                   </label>
                   <input
@@ -113,7 +127,7 @@ function AddFarm() {
                     name="licenceId"
                     id="phone"
                     placeholder="Enter last 4 digits"
-                    class="formbold-form-input"
+                    className="formbold-form-input"
                     onBlur={formik.handleBlur}
                     value={formik.values.licenceId}
                     onChange={formik.handleChange}
@@ -134,16 +148,16 @@ function AddFarm() {
               </div>
             </div>
 
-            <div class="fformbold-mb-3">
+            <div className="fformbold-mb-3">
               <div>
-                <label for="phone" class="formbold-form-label">
+                <label for="phone" className="formbold-form-label">
                   Phone number
                 </label>
                 <input
                   type="text"
                   name="phonenumber"
                   id="phone"
-                  class="formbold-form-input"
+                  className="formbold-form-input"
                   onBlur={formik.handleBlur}
                   value={formik.values.phonenumber}
                   onChange={formik.handleChange}
@@ -163,15 +177,15 @@ function AddFarm() {
               ) : null}
             </div>
 
-            <div class="formbold-mb-3">
-              <label for="address" class="formbold-form-label">
+            <div className="formbold-mb-3">
+              <label for="address" className="formbold-form-label">
                 Address
               </label>
               <input
                 type="text"
                 name="address"
                 id="address"
-                class="formbold-form-input"
+                className="formbold-form-input"
                 onBlur={formik.handleBlur}
                 value={formik.values.address}
                 onChange={formik.handleChange}
@@ -190,9 +204,9 @@ function AddFarm() {
               ) : null}
             </div>
 
-            <div class="formbold-input-flex">
+            <div className="formbold-input-flex">
               <div>
-                <label for="state" class="formbold-form-label">
+                <label for="state" className="formbold-form-label">
                   {" "}
                   State{" "}
                 </label>
@@ -200,7 +214,7 @@ function AddFarm() {
                   type="text"
                   name="state"
                   id="state"
-                  class="formbold-form-input"
+                  className="formbold-form-input"
                   onBlur={formik.handleBlur}
                   value={formik.values.state}
                   onChange={formik.handleChange}
@@ -220,7 +234,7 @@ function AddFarm() {
               </div>
 
               <div>
-                <label for="country" class="formbold-form-label">
+                <label for="country" className="formbold-form-label">
                   {" "}
                   Country{" "}
                 </label>
@@ -228,7 +242,7 @@ function AddFarm() {
                   type="text"
                   name="country"
                   id="country"
-                  class="formbold-form-input"
+                  className="formbold-form-input"
                   onBlur={formik.handleBlur}
                   value={formik.values.country}
                   onChange={formik.handleChange}
@@ -248,9 +262,9 @@ function AddFarm() {
               </div>
             </div>
 
-            <div class="formbold-input-flex">
+            <div className="formbold-input-flex">
               <div>
-                <label for="post" class="formbold-form-label">
+                <label for="post" className="formbold-form-label">
                   {" "}
                   Post/Zip code{" "}
                 </label>
@@ -258,7 +272,7 @@ function AddFarm() {
                   type="text"
                   name="post"
                   id="post"
-                  class="formbold-form-input"
+                  className="formbold-form-input"
                   onBlur={formik.handleBlur}
                   value={formik.values.post}
                   onChange={formik.handleChange}
@@ -277,7 +291,7 @@ function AddFarm() {
                 ) : null}
               </div>
               <div>
-                <label for="area" class="formbold-form-label">
+                <label for="area" className="formbold-form-label">
                   {" "}
                   Poultry population{" "}
                 </label>
@@ -306,8 +320,14 @@ function AddFarm() {
               </div>
             </div>
 
-            <button type="submit" class="formbold-btn">Submit</button>
+            <button type="submit" className="formbold-btn">
+              Submit
+            </button>
           </form>
+        </div>
+        <div className="row-container">
+          <h2>Your Farms</h2>
+          <div className="showFarm"></div>
         </div>
       </div>
     </div>

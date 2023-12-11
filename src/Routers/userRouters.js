@@ -4,6 +4,7 @@ import React from 'react'
 import LoginPage from "../Pages/User/LoginPage";
 import HomePage from "../Pages/User/HomePage";
 import AddFarm from "../Pages/User/AddFarmPage";
+import FeedManagePage from "../Pages/User/FeedManagePage";
 
 function UserRouters() {
   return (
@@ -12,6 +13,7 @@ function UserRouters() {
         <Route path="/login" element={<LoginPage/>}/>
         <Route path="/" element={<HomePage/>}/>
         <Route path="/addfarm" element={<AddFarm/>}/>
+        <Route path="/feed" element={<FeedManagePage/>}/>
 
     </Routes>
   )

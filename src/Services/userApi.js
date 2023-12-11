@@ -15,6 +15,11 @@ export const addFarmDetails=(values,userId)=>{
   console.log(userId,"function user Api")
   return userInstance.post(`/addfarm/${userId}`,{...values})
 }
+
+export const addFeedDetails=(values,userId)=>{
+  return userInstance.post(`/addfeed/${userId}`,{...values})
+}
+
 //GET methods
 
 export const userHeader=()=>{

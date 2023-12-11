@@ -6,17 +6,28 @@ import "./AddFarm.css";
 import { addFarmDetails, showUserFarms } from "../../../Services/userApi";
 import { toast } from "react-toastify";
 function AddFarm() {
+  const [farmDetails, setfarmDetails] = useState([]);
   const user = useSelector((state) => state.user.value);
 
   useEffect(() => {
-    
+    const fetchUserFarms = async () => {
       try {
-        const { data } =  showUserFarms(user._id);
+        // Ensure that user is defined before accessing _id
+        if (user && user._id) {
+          const { data } = await showUserFarms(user._id);
+          if (data.status) {
+            setfarmDetails(data.farms);
+          }
+        } else {
+          console.warn("User or user._id is undefined");
+        }
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
-    
-  });
+    };
+
+    fetchUserFarms();
+  }, [user]);
 
   console.log(user);
   const initialValues = {
@@ -30,18 +41,23 @@ function AddFarm() {
     poultryPopulation: "",
   };
 
-  const onSubmit = async (values) => {
+  const onSubmit = async (values, { setSubmitting, resetForm }) => {
     try {
-      console.log("OnClick submited!")
+      console.log("OnClick submitted!");
       const { data } = await addFarmDetails(values, user._id);
-      console.log(data,"OnClick submited!")
+      console.log(data, "OnClick submitted!");
+
       if (data.status) {
         toast.success(data.message);
+        // Manually reset the form values
+        resetForm({ values: initialValues });
       } else {
-        toast(data.message);
+        toast.error(data.message);
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -327,7 +343,16 @@ function AddFarm() {
         </div>
         <div className="row-container">
           <h2>Your Farms</h2>
-          <div className="showFarm"></div>
+          {farmDetails.length === 0 ? (
+            <div className="emptyMessage">No farm details available</div>
+          ) : (
+            farmDetails.map((values, index) => (
+              <div key={index} className="showFarm">
+                {index + 1}. {values.farmName} - Licence ID :  {values.licenceID}
+                
+              </div>
+            ))
+          )}
         </div>
       </div>
     </div>

@@ -11,16 +11,15 @@ function Feed() {
   const farmId = useParams().farmId;
   const user = useSelector((state) => state.user.value);
 const [feedDetails,setFeedDeatils]=useState([])
+const fetchFeedDetails = async () => {
+  try{
+  const { data } = await showFeedDetails(farmId, user?._id);
+  setFeedDeatils(data.data)
+  }catch(error){
+    console.log(error)
+  }
+}
   useEffect(() => {
-    const fetchFeedDetails = async () => {
-      try{
-      const { data } = await showFeedDetails(farmId, user?._id);
-      console.log(data.data,"data ")
-      setFeedDeatils(data.data)
-      }catch(error){
-        console.log(error)
-      }
-    }
     fetchFeedDetails();
   }, [farmId,user?._id]);
 
@@ -33,6 +32,7 @@ const [feedDetails,setFeedDeatils]=useState([])
     const { data } = await addFeedDetails(values, user._id, farmId);
     if (data.status) {
       toast.success(data.message);
+      fetchFeedDetails()
       resetForm({ values: initialValues });
     } else {
       toast.error(data.message);

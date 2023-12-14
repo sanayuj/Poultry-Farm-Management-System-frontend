@@ -3,7 +3,7 @@ import "./ShowFarms.css";
 import { useSelector } from "react-redux";
 import { showUserFarms } from "../../../Services/userApi";
 import { Link } from "react-router-dom";
-function ShowFarms() {
+function ShowFarms(page) {
   const user = useSelector((state) => state.user.value);
   const [farmDetails, setFarmDetails] = useState([]);
   useEffect(() => {
@@ -29,7 +29,7 @@ function ShowFarms() {
   return (
     <div>
       <div className="row-container">
-        <h2>Your Farms</h2>
+        <h2>Your Farms </h2>
         {farmDetails.map((farms, index) => (
           <div key={index} className="mainDiv">
             <Link to={`/feed/${farms._id}`} className="showFarmpage">

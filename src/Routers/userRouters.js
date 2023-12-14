@@ -1,22 +1,23 @@
-import { Route,Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import SignupPage from "../Pages/User/SignupPage";
-import React from 'react'
+import React from "react";
 import LoginPage from "../Pages/User/LoginPage";
 import HomePage from "../Pages/User/HomePage";
 import AddFarm from "../Pages/User/AddFarmPage";
 import FeedManagePage from "../Pages/User/FeedManagePage";
+import ShowFarmsPage from "../Pages/User/ShowFarmsPage";
 
 function UserRouters() {
   return (
     <Routes>
-        <Route path="/signup" element={<SignupPage/>}/>  
-        <Route path="/login" element={<LoginPage/>}/>
-        <Route path="/" element={<HomePage/>}/>
-        <Route path="/addfarm" element={<AddFarm/>}/>
-        <Route path="/feed" element={<FeedManagePage/>}/>
-
+      <Route path="/signup" element={<SignupPage />} />
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/" element={<HomePage />} />
+      <Route path="/addfarm" element={<AddFarm />} />
+      <Route path="/feed/:farmId" element={<FeedManagePage />} />
+      <Route path="/showfarms" element={<ShowFarmsPage />} />
     </Routes>
-  )
+  );
 }
 
-export default UserRouters
+export default UserRouters;

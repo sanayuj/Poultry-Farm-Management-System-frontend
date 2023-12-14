@@ -1,20 +1,42 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import "./Feed.css";
-import { addFeedDetails } from "../../../Services/userApi";
+import { addFeedDetails, showFeedDetails } from "../../../Services/userApi";
 import { useSelector } from "react-redux";
-
+import { useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function Feed() {
-    const user=useSelector((state)=>state.user.value)
+  const farmId = useParams().farmId;
+  const user = useSelector((state) => state.user.value);
+const [feedDetails,setFeedDeatils]=useState([])
+  useEffect(() => {
+    const fetchFeedDetails = async () => {
+      try{
+      const { data } = await showFeedDetails(farmId, user?._id);
+      console.log(data.data,"data ")
+      setFeedDeatils(data.data)
+      }catch(error){
+        console.log(error)
+      }
+    }
+    fetchFeedDetails();
+  }, [farmId,user?._id]);
+
   const initialValues = {
     recived: "",
     consumed: "",
   };
 
-  const onSubmit = async(values) => {
-     const {data}=await addFeedDetails(values,user._id)
+  const onSubmit = async (values, { resetForm }) => {
+    const { data } = await addFeedDetails(values, user._id, farmId);
+    if (data.status) {
+      toast.success(data.message);
+      resetForm({ values: initialValues });
+    } else {
+      toast.error(data.message);
+    }
   };
   const validationSchema = Yup.object({
     recived: Yup.string()
@@ -109,26 +131,34 @@ function Feed() {
               </button>
             </form>
           </div>
-          <div className="row-container">
-            <h2>Feed Records</h2>
+          <div className="row-containers">
+            <h2 >Feed Records</h2>
 
-            <table class="table table-light showFarm">
-  <thead>
-    <tr><th>Si.no</th>
-    <th>Date</th>
-    <th>Recived</th>
-    <th>Consumed</th>
-    <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr class="table-active">
-     No Data to show
-    </tr>
-    
-    
-  </tbody>
-</table>
+            {feedDetails?.length === 0 ? (
+            <p className="emptyMsg">No feed records available</p>
+            ) : (
+              <table className="table table-light showFarm">
+                <thead>
+                  <tr>
+                    <th>Si.no</th>
+                    <th>Date</th>
+                    <th>Received</th>
+                    <th>Consumed</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {feedDetails.map((values, index) => (
+                    <tr key={index} className="table-active">
+                      <td>{index + 1}</td>
+                      <td>{new Date(values.feedDate).toLocaleDateString()}</td>
+                      <td>{values.qtyReceived} bags </td>
+                      <td>{values.qtyConsumed} bags</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            )}
           </div>
         </div>
       </div>

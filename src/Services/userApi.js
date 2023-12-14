@@ -16,9 +16,10 @@ export const addFarmDetails=(values,userId)=>{
   return userInstance.post(`/addfarm/${userId}`,{...values})
 }
 
-export const addFeedDetails=(values,userId)=>{
-  return userInstance.post(`/addfeed/${userId}`,{...values})
+export const addFeedDetails=(values,userId,farmId)=>{
+  return userInstance.post(`/addfeed/${userId}`,{...values,farmId:farmId})
 }
+
 
 //GET methods
 
@@ -27,7 +28,9 @@ export const userHeader=()=>{
 } 
 
 export const showUserFarms=(userId)=>{
-  console.log(userId,"Api farm")
   return userInstance.get(`/showuserfarms/${userId}`)
 }
 
+export const showFeedDetails=(userId,farmId)=>{
+  return userInstance.get(`/feedDetails/${userId}`,{ params: { farmId: farmId } })
+}

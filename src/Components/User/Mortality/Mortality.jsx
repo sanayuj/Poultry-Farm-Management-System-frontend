@@ -126,33 +126,28 @@ function Mortality() {
           <div className="row-containers">
             <h2>Mortality Records</h2>
 
-            {/* {mortalityDetails?.length === 0 ? (
-            <p className="emptyMsg">No medicine records available</p>
-          ) : (
-            <table className="table table-light showFarm">
-              <thead>
-                <tr>
-                  <th>Si.no</th>
-                  <th>Date</th>
-                  <th>Medicine Name</th>
-                  <th>Quantity</th>
-                  <th>Last vaccination Date</th>
-                 
-                </tr>
-              </thead>
-              <tbody>
-                {mortalityDetails.map((values, index) => (
-                  <tr key={index} className="table-active">
-                    <td>{index + 1}</td>
-                    <td>{values.date}</td>
-                    <td>{values.medicineName}</td>
-                    <td>{values.Quantity}</td>
-                    <td>{values.dateOfVaccination}</td>
+            {mortalityDetails?.length === 0 ? (
+              <p className="emptyMsg">No Mortality records available</p>
+            ) : (
+              <table className="table table-light showFarm">
+                <thead>
+                  <tr>
+                    <th>Si.no</th>
+                    <th>Date</th>
+                    <th>no of Mortality</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          )} */}
+                </thead>
+                <tbody>
+                  {mortalityDetails.map((values, index) => (
+                    <tr key={index} className="table-active">
+                      <td>{index + 1}</td>
+                      <td>{values.date}</td>
+                      <td>{values.noOfMortality}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            )}
           </div>
         </div>
       </div>

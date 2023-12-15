@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import "./ShowFarms.css";
 import { useSelector } from "react-redux";
 import { showUserFarms } from "../../../Services/userApi";
-import { Link } from "react-router-dom";
-function ShowFarms(page) {
+import { Link, useParams } from "react-router-dom";
+function ShowFarms() {
+  const pageName = useParams().values;
+
   const user = useSelector((state) => state.user.value);
   const [farmDetails, setFarmDetails] = useState([]);
   useEffect(() => {
@@ -13,7 +15,7 @@ function ShowFarms(page) {
           const { data } = await showUserFarms(user._id);
           console.log(data);
           if (data.status) {
-            console.log(data.farms)
+            console.log(data.farms);
             setFarmDetails(data.farms);
           }
         } else {
@@ -29,10 +31,14 @@ function ShowFarms(page) {
   return (
     <div>
       <div className="row-container">
-        <h2>Your Farms </h2>
+        <p className="pageName">{pageName} Management</p>
+        <h2>Your Farms</h2>
         {farmDetails.map((farms, index) => (
           <div key={index} className="mainDiv">
-            <Link to={`/feed/${farms._id}`} className="showFarmpage">
+            <Link
+              to={`/${pageName.toLowerCase()}/${farms._id}`}
+              className="showFarmpage"
+            >
               {index + 1}.{farms.farmName}
               <span className="spanPart">Click here to view</span>
             </Link>

@@ -20,6 +20,10 @@ export const addFeedDetails=(values,userId,farmId)=>{
   return userInstance.post(`/addfeed/${userId}`,{...values,farmId:farmId})
 }
 
+export const addMedicineDetails=(values,userId,farmId)=>{
+  return userInstance.post(`/addmedicine/${userId}`,{...values,farmId:farmId})
+}
+
 
 //GET methods
 
@@ -33,4 +37,8 @@ export const showUserFarms=(userId)=>{
 
 export const showFeedDetails=(userId,farmId)=>{
   return userInstance.get(`/feedDetails/${userId}`,{ params: { farmId: farmId } })
+}
+
+export const showMedicineDetails=(farmId,userId)=>{
+  return userInstance.get(`/medicineDetails/${userId}`,{params:{farmId:farmId}})
 }

@@ -6,6 +6,7 @@ import HomePage from "../Pages/User/HomePage";
 import AddFarm from "../Pages/User/AddFarmPage";
 import FeedManagePage from "../Pages/User/FeedManagePage";
 import ShowFarmsPage from "../Pages/User/ShowFarmsPage";
+import MedicinePage from "../Pages/User/MedicinePage";
 
 function UserRouters() {
   return (
@@ -15,7 +16,8 @@ function UserRouters() {
       <Route path="/" element={<HomePage />} />
       <Route path="/addfarm" element={<AddFarm />} />
       <Route path="/feed/:farmId" element={<FeedManagePage />} />
-      <Route path="/showfarms" element={<ShowFarmsPage />} />
+      <Route path="/showfarms/:values" element={<ShowFarmsPage />} />
+      <Route path="/medicine/:farmId" element={<MedicinePage/>}/>
     </Routes>
   );
 }

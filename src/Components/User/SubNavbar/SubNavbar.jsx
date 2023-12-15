@@ -27,7 +27,7 @@ function SubNavbar() {
             </Link>
           </li>
           <li>
-            <Link className="Link-none">Help and Support</Link>
+            <Link className="Link-none" to={"/help"}>Help and Support</Link>
           </li>
         </ul>
       </div>

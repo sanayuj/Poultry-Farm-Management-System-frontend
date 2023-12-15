@@ -9,6 +9,7 @@ import ShowFarmsPage from "../Pages/User/ShowFarmsPage";
 import MedicinePage from "../Pages/User/MedicinePage";
 import Mortality from "../Components/User/Mortality/Mortality";
 import MortalityPage from "../Pages/User/MortalityPage";
+import HelpPage from "../Pages/User/HelpPage";
 
 function UserRouters() {
   return (
@@ -21,6 +22,7 @@ function UserRouters() {
       <Route path="/showfarms/:values" element={<ShowFarmsPage />} />
       <Route path="/medicine/:farmId" element={<MedicinePage />} />
       <Route path="/mortality/:farmId" element={<MortalityPage />} />
+      <Route path="/help" element={<HelpPage/>}/>
     </Routes>
   );
 }

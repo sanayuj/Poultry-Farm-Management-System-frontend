@@ -33,6 +33,10 @@ export const addMortality = (values, userId, farmId) => {
   });
 };
 
+export const helpAndSupportDetails=(values,userId)=>{
+  return userInstance.post(`/helpAndSupport/${userId}`,{...values})
+}
+
 //GET methods
 
 export const userHeader = () => {

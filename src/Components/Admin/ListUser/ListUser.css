@@ -29,3 +29,11 @@ h5 {
     color: white;
     border:none
 }
+
+.viewBtn{
+    background-color: rgb(80, 108, 234);
+    border-radius: 10px;
+    width: 80px;
+    color: white;
+    border:none
+}

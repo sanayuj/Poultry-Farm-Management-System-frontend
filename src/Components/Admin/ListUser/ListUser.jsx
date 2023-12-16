@@ -5,10 +5,11 @@ import { getUserDetails, userDisable } from "../../../Services/adminApi";
 
 import "./ListUser.css";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 function ListUser() {
   const [userDetails, setUserDetails] = useState([]);
-
+const navigate=useNavigate()
   const userDisableFun = async (id, index) => {
     try {
       const { data } = await userDisable(id);
@@ -29,10 +30,10 @@ function ListUser() {
 
   useEffect(() => {
     getUserDetails().then((response) => {
-      console.log(response);
+      console.log(response,"^^^^^^>>>>");
       setUserDetails(response.data.user);
     });
-  });
+  },[]);
   return (
     <div>
       <Header />
@@ -68,6 +69,7 @@ function ListUser() {
                     >
                       {user?.blockStatus ? "Unblock" : "Block"}
                     </button>
+                    <button className="viewBtn mx-3" onClick={()=>{navigate(`/admin/userfarm/${user._id}`)}}>Details</button>
                   </div>
                 </td>
               </tr>

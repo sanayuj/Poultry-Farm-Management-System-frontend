@@ -1,8 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Header() {
-
+  const navigate = useNavigate();
+  const adminLogout = () => {
+    localStorage.removeItem("adminJWT");
+    navigate("/admin/login");
+  };
 
   return (
     <div>
@@ -14,7 +18,11 @@ function Header() {
             </b>
           </Link>
         </div>
-       
+        <div>
+          <button className="btn" onClick={adminLogout}>
+            Logout
+          </button>
+        </div>
       </nav>
     </div>
   );

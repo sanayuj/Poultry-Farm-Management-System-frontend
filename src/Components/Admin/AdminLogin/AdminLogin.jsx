@@ -18,8 +18,10 @@ function Login() {
       const { data } = await adminLogin(values);
       console.log(data, "USER RETURN DATA!!!");
       if(data.status){
-        navigate("/admin/")
+      
+        localStorage.setItem("adminJWT", data.token);
         toast.success(data.message)
+        navigate("/admin/")
       }else{
         toast.error(data.message)
       }

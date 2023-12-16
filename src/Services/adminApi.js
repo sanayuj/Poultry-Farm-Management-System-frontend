@@ -16,3 +16,6 @@ export const userDisable=(id)=>{
 export const getUserDetails=()=>{
     return adminInstance.get("/listuser")
 }
+export const getUserFarmDetails=(userId)=>{
+    return adminInstance.get(`/getuserFarm/${userId}`)
+}

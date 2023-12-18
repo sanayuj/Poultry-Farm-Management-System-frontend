@@ -5,9 +5,11 @@ import { useSelector } from "react-redux";
 import "./AddFarm.css";
 import { addFarmDetails, showUserFarms } from "../../../Services/userApi";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 function AddFarm() {
   const [farmDetails, setfarmDetails] = useState([]);
   const user = useSelector((state) => state.user.value);
+  const navigate=useNavigate()
 
   useEffect(() => {
     const fetchUserFarms = async () => {
@@ -15,6 +17,10 @@ function AddFarm() {
         // Ensure that user is defined before accessing _id
         if (user && user._id) {
           const { data } = await showUserFarms(user._id);
+          if(data.loginFail){
+            navigate("/")
+          }
+
           if (data.status) {
             setfarmDetails(data.farms);
           }

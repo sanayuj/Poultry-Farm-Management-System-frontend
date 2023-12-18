@@ -5,3 +5,7 @@
 .table{
     margin-left: 35px;
 }
+.emptyMsg{
+    width: 100%;
+    text-align: center;
+}

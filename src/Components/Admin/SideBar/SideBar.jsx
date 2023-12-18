@@ -23,10 +23,10 @@ function SideBar() {
               <NavIcon></NavIcon>
               <NavText><Link className="no-underline" to={"/admin/"}>Sale chart</Link></NavText>
             </NavItem>
-            <NavItem eventKey="/admin/">
+            {/* <NavItem eventKey="/admin/">
               <NavIcon></NavIcon>
               <NavText>Booking Histroy</NavText>
-            </NavItem>
+            </NavItem> */}
           </NavItem>
           <NavItem eventKey="/">
             <NavIcon>
@@ -38,31 +38,31 @@ function SideBar() {
               <NavText><Link className="no-underline" to={"/admin/userDetails"}>List</Link> </NavText>
             </NavItem>
             <NavText>Users</NavText>
-            <NavItem eventKey="/admin/">
+            {/* <NavItem eventKey="/admin/">
               <NavIcon></NavIcon>
               <NavText><Link className="no-underline" to={"/admin/"}>Farm Details</Link> </NavText>
-            </NavItem>
+            </NavItem> */}
           </NavItem>
-          <NavItem eventKey="/">
+          {/* <NavItem eventKey="/">
             <NavIcon>
               <AiFillFilePpt size={20} className="sidebarIcon" />
-            </NavIcon>
-            <NavText>All Stock</NavText>
+            </NavIcon> */}
+            {/* <NavText>All Stock</NavText>
             <NavItem eventKey="/admin/">
               <NavIcon></NavIcon>
               <NavText>List Stock</NavText>
-            </NavItem>
-            <NavItem eventKey="/admin/">
+            </NavItem> */}
+            {/* <NavItem eventKey="/admin/">
               <NavIcon></NavIcon>
               <NavText>Add Stock</NavText>
-            </NavItem>
-          </NavItem>
-          <NavItem eventKey="/admin/">
+            </NavItem> */}
+          {/* </NavItem> */}
+          {/* <NavItem eventKey="/admin/">
             <NavIcon>
               <BiCategory size={20} className="sidebarIcon" />
             </NavIcon>
            <Link></Link> <NavText>Help and Support</NavText>
-          </NavItem>
+          </NavItem> */}
         </SideNav.Nav>
       </SideNav>
     </div>

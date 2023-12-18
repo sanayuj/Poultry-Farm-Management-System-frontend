@@ -24,14 +24,18 @@ export const getMedicineDetails = (farmId, userId) => {
     params: { farmId: farmId },
   });
 };
-export const getFeedDetails=(farmId, userId) => {
-    return adminInstance.get(`/getfeeddetails/${userId}`, {
-      params: { farmId: farmId },
-    })
+export const getFeedDetails = (farmId, userId) => {
+  return adminInstance.get(`/getfeeddetails/${userId}`, {
+    params: { farmId: farmId },
+  });
 };
 
-export const getMortalityDetails=(farmId, userId) => {
-    return adminInstance.get(`/getmortalitydetails/${userId}`, {
-      params: { farmId: farmId },
-    })
+export const getMortalityDetails = (farmId, userId) => {
+  return adminInstance.get(`/getmortalitydetails/${userId}`, {
+    params: { farmId: farmId },
+  });
+};
+
+export const AdminDashboard = () => {
+  return adminInstance.get("/admindashboard");
 };
